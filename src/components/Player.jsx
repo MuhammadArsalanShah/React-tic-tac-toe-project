@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-export default function Player({name, symbol}) {
+export default function Player({ initialName, symbol }) {
 
+  const [ playerName, setPlayerName ] = useState(initialName);
   const [ isEditing, setIsEditing ] = useState(false)
 
   console.log('inside Player: ',isEditing);
@@ -10,21 +11,24 @@ export default function Player({name, symbol}) {
     // !isEditing ? setIsEditing(true) : setIsEditing(false);
     // setIsEditing(!isEditing); //still not perfect
     setIsEditing(Edit => !Edit); //Good practice. react recommended
-    console.log('inside handle click: ',isEditing);
   }
 
-  let playerName = <span className="player-name">{name}</span>;
+  function handleChange(event) {
+    setPlayerName(event.target.value);
+  }
+
+  let playerNameField = <span className="player-name">{playerName}</span>;
   let btnCaption = 'Edit';
 
   if (isEditing) {
-    playerName = <input type="text" name="" id="" required value={name}/>
+    playerNameField = <input type="text" value={playerName} required onChange={handleChange}/>
     btnCaption="Save";
   }
 
   return (
     <li>
       <span className="player">
-        {playerName}
+        {playerNameField}
         <span className="player-symbol">{symbol}</span>
       </span>
       <button onClick={handleEditClick}>{btnCaption}</button>
