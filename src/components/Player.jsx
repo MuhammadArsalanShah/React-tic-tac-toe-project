@@ -5,8 +5,6 @@ export default function Player({ initialName, symbol }) {
   const [ playerName, setPlayerName ] = useState(initialName);
   const [ isEditing, setIsEditing ] = useState(false)
 
-  console.log('inside Player: ',isEditing);
-
   function handleEditClick() {
     // !isEditing ? setIsEditing(true) : setIsEditing(false);
     // setIsEditing(!isEditing); //still not perfect
