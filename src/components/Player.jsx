@@ -4,9 +4,13 @@ export default function Player({name, symbol}) {
 
   const [ isEditing, setIsEditing ] = useState(false)
 
+  console.log('inside Player: ',isEditing);
+
   function handleEditClick() {
     // !isEditing ? setIsEditing(true) : setIsEditing(false);
-    setIsEditing(!isEditing); //still not perfect
+    // setIsEditing(!isEditing); //still not perfect
+    setIsEditing(Edit => !Edit); //Good practice. react recommended
+    console.log('inside handle click: ',isEditing);
   }
 
   let playerName = <span className="player-name">{name}</span>;
